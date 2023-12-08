@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { portController } from "./port/port.controller";
 import { portScanner } from "./port/port-scanner.controller";
+import { DataTransfer } from "./port/data-transfer-with-port";
 
 class v1 {
   private routes: Router;
@@ -47,10 +48,18 @@ class v1 {
     });
 
     this.routes.get("/forward-port", async (req, res) => {
-      // const { port } = req.params;
       const activePorts = await portScanner.portForwarding();
-      // res.send(`Port is kill ? ${activePorts}`);
       res.send(`check if port is forwarded `);
+    });
+
+    this.routes.get("/data-receiver", async (req, res) => {
+      try {
+        const result = await DataTransfer.Receiver();
+        res.send(`Check the result ${result}`);
+      } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+      }
     });
   }
 
