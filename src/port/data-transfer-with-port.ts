@@ -7,11 +7,16 @@ class Service {
         const message: string = "Hello from Server 2!";
         const obj = {
           name: "kayes",
-          age: "23",
+          age: 23,
         };
 
         client.write(JSON.stringify(obj));
         // client.write("port-to-port" + message);
+
+        //! <------------ Encrypt Start --------------->
+
+        //! <-------------- Encrypt End ---------->
+
         client.end();
         resolve(message);
       });
