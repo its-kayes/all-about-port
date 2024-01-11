@@ -81,8 +81,8 @@ class PortScanner {
     return new Promise((resolve, reject) => {
       const server = net.createServer((client) => {
         const target = net.createConnection({
-          host: "192.168.1.103",
-          port: 4000,
+          host: "192.168.1.104",
+          port: 5173,
         });
 
         console.log("Client connected", client.remoteAddress);

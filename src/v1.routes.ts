@@ -52,7 +52,7 @@ class v1 {
       res.send(`check if port is forwarded `);
     });
 
-    this.routes.get("/data-receiver", async (req, res) => {
+    this.routes.get("/send-message", async (req, res) => {
       try {
         const result = await DataTransfer.Receiver();
         res.send(`Check the result ${result}`);
