@@ -1,4 +1,5 @@
 import { Socket } from "net";
+import { encrypt } from "./encrypt";
 
 class Service {
   public async Receiver(): Promise<string> {
@@ -6,17 +7,22 @@ class Service {
       const client: Socket = require("net").connect({ port: 3000 }, () => {
         const message: string = "Hello from Server 2!";
         const obj = {
-          name: "kayes",
-          age: 23,
+          number: 10,
+          string: "sender",
+          boolean: true,
+          stNu: "10",
         };
 
-        client.write(JSON.stringify(obj));
         // client.write("port-to-port" + message);
 
         //! <------------ Encrypt Start --------------->
 
+        // console.log(JSON.stringify(obj));
+        const result = encrypt(JSON.stringify(obj), 10);
+        console.log(result);
         //! <-------------- Encrypt End ---------->
 
+        client.write(JSON.stringify(result));
         client.end();
         resolve(message);
       });
