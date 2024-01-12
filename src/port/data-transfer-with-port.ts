@@ -1,5 +1,6 @@
 import { Socket } from "net";
 import { encrypt } from "./encrypt";
+import { encryptedMessage } from "./RSA";
 
 class Service {
   public async Receiver(): Promise<string> {
@@ -20,6 +21,7 @@ class Service {
         // console.log(JSON.stringify(obj));
         const result = encrypt(JSON.stringify(obj), 10);
         console.log(result);
+        encryptedMessage;
         //! <-------------- Encrypt End ---------->
 
         client.write(JSON.stringify(result));
